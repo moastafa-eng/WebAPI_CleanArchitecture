@@ -1,8 +1,9 @@
 ﻿using WebAPI_CleanArchitecture.Domain.Abstraction;
-using WebAPI_CleanArchitecture.Domain.Entities.Customers.ValueObject;
+using WebAPI_CleanArchitecture.Domain.Entities.Customers.ValueObjects;
 using WebAPI_CleanArchitecture.Domain.Entities.Shared;
 using WebAPI_CleanArchitecture.Domain.Entities.Customers.Events;
 using WebAPI_CleanArchitecture.Domain.Entities.Customers.DTOs;
+using WebAPI_CleanArchitecture.Domain.Entities.Invoices;
 
 namespace WebAPI_CleanArchitecture.Domain.Entities.Customers
 {
@@ -26,10 +27,11 @@ namespace WebAPI_CleanArchitecture.Domain.Entities.Customers
         public Title Title { get; private set; } = null!;
         public Address Address { get; private set; } = null!;
         public Money Balance { get; private set; } = null!;
+        public ICollection<Invoice> Invoices { get; private set; } = null!;
 
 
 
-        // << Factory Design Pattern >>
+        // << Methods-Factory Design Pattern >>
         public static Customer Create(CreateCustomerDto request)
         {
             var customer = new Customer
@@ -44,8 +46,21 @@ namespace WebAPI_CleanArchitecture.Domain.Entities.Customers
 
                 new Money(0));
 
+            // Raise the DomainEvent
             customer.RaiseDomainEvent(new CustomerCreatedDomainEvent(customer.Id));
             return customer;
+        }
+
+        public void Update(UpdateCustomerDto request)
+        {
+            Title = new Title(request.Title);
+            Address = new Address(
+                request.City,
+                request.FirstLineAddress,
+                request.SecondLineAddress,
+                request.Country,
+                request.PostCode);
+
         }
     }
 }

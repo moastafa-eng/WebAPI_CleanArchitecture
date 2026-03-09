@@ -1,6 +1,6 @@
 ﻿namespace WebAPI_CleanArchitecture.Domain.Abstraction
 {
-    public class BaseEntity
+    public class  BaseEntity
     {
         private readonly List<IDomainEvent> _domainEvents = [];
 
@@ -21,7 +21,6 @@
         /// <summary>
         /// Make it protected to prevent anyone to create instance from class BaseEntity using new word 
         /// define empty constructor because the EFCore Instantiation 
-        /// define a parameterized constructor because if user want to create a new instance from class  
         /// that inherits this class(BaseEntity) he can initialize the Entity with a specific ID manually. 
         /// </summary>
         protected BaseEntity() { }

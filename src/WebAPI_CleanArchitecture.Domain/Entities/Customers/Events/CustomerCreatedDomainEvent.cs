@@ -2,5 +2,5 @@
 
 namespace WebAPI_CleanArchitecture.Domain.Entities.Customers.Events
 {
-    public record CustomerCreatedDomainEvent(Guid customerId) : IDomainEvent;
+    public record CustomerCreatedDomainEvent(Guid CustomerId) : IDomainEvent;
 }

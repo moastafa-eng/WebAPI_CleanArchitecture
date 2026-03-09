@@ -2,7 +2,7 @@
 
 namespace WebAPI_CleanArchitecture.Domain.Entities.Customers.DTOs
 {
-    public class BaseCustomerDto
+    public abstract class BaseCustomerDto
     {
         public string Title { get; set; } = null!;
         public string FirstLineAddress { get; set; } = null!;

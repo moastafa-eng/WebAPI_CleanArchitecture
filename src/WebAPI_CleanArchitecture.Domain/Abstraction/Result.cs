@@ -8,7 +8,7 @@ namespace WebAPI_CleanArchitecture.Domain.Abstraction
 
         // << Properties >>
         public TEntity? Data { get; set; }
-        public bool IsNotSuccessfull { get; set; }
+        public bool IsNotSuccessful { get; set; }
         public int StatusCode { get; set; }
         public Dictionary<string, string>? Errors { get; set; }
 
@@ -21,21 +21,21 @@ namespace WebAPI_CleanArchitecture.Domain.Abstraction
         {
             Data = data;
             StatusCode = statusCode;
-            IsNotSuccessfull = false;
+            IsNotSuccessful = false;
         }
 
         // << Success without data >>
         private Result(int statusCode)
         {
             StatusCode = statusCode;
-            IsNotSuccessfull = false;
+            IsNotSuccessful = false;
         }
 
         // << Fail with one error >>
         private Result(int statusCode, string errorCode, string errorMassage)
         {
             StatusCode = statusCode;
-            IsNotSuccessfull = true;
+            IsNotSuccessful = true;
             Errors = new() { { errorCode, errorMassage } };
         }
 
@@ -43,7 +43,7 @@ namespace WebAPI_CleanArchitecture.Domain.Abstraction
         private Result(int statusCode, Dictionary<string, string> errors)
         {
             StatusCode = statusCode;
-            IsNotSuccessfull = true;
+            IsNotSuccessful = true;
             Errors = errors;
         }
 
