@@ -1,13 +1,15 @@
-﻿using System.Collections;
+﻿// Ignore Spelling: Dto
+
+using System.Collections;
 using System.Collections.Generic;
 
 namespace WebAPI_CleanArchitecture.Domain.Abstraction
 {
-    public class Result<TEntity> where TEntity : BaseEntity 
+    public class Result<TDto> where TDto : IResult
     {
 
         // << Properties >>
-        public TEntity? Data { get; set; }
+        public TDto? Data { get; set; }
         public bool IsNotSuccessful { get; set; }
         public int StatusCode { get; set; }
         public Dictionary<string, string>? Errors { get; set; }
@@ -17,7 +19,7 @@ namespace WebAPI_CleanArchitecture.Domain.Abstraction
         // << *Result Design Pattern* >> 
 
         // << Success with data >>
-        private Result(TEntity? data, int statusCode)
+        private Result(TDto? data, int statusCode)
         {
             Data = data;
             StatusCode = statusCode;
@@ -50,19 +52,19 @@ namespace WebAPI_CleanArchitecture.Domain.Abstraction
 
 
         // << *Factory Design Pattern* >>
-        public static Result<TEntity> Success(TEntity? data, int statusCode)
+        public static Result<TDto> Success(TDto? data, int statusCode)
             => new(data, statusCode);
 
-        public static Result<TEntity> Success(int statusCode)
+        public static Result<TDto> Success(int statusCode)
             => new(statusCode);
 
-        public static Result<TEntity> Fail(int statusCode, string errorCode, string errorMessage)
+        public static Result<TDto> Fail(int statusCode, string errorCode, string errorMessage)
             => new(statusCode, errorCode, errorMessage);
 
-        public static Result<TEntity> Fail(int statusCode, Dictionary<string, string> errors)
+        public static Result<TDto> Fail(int statusCode, Dictionary<string, string> errors)
             => new(statusCode, errors);
-
-
-        public class NoContentDto;
     }
+
+
+    public class NoContentDto : IResult;
 }

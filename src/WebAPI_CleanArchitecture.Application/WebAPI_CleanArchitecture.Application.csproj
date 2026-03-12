@@ -6,4 +6,34 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Abstraction\Behaviors\" />
+    <Folder Include="Abstraction\Caching\" />
+    <Folder Include="Abstraction\Emailing\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Features\Customers\Commands\CreateCustomer\" />
+    <Folder Include="Features\Customers\Commands\RemoveCustomer\" />
+    <Folder Include="Features\Customers\Commands\UpdateCustomer\" />
+    <Folder Include="Features\Customers\Queries\GetCustomer\" />
+    <Folder Include="Features\Customers\Queries\GetAllCustomers\" />
+    <Folder Include="Features\Invoices\Commands\CreateInvoice\" />
+    <Folder Include="Features\Invoices\Commands\RemoveInvoice\" />
+    <Folder Include="Features\Invoices\Commands\UpdateInvoice\" />
+    <Folder Include="Features\Invoices\Queries\GetInvoice\" />
+    <Folder Include="Features\Invoices\Queries\GetAllInvoices\" />
+    <Folder Include="Features\Products\Commands\CreateProduct\" />
+    <Folder Include="Features\Products\Commands\RemoveProduct\" />
+    <Folder Include="Features\Products\Commands\UpdateProduct\" />
+    <Folder Include="Features\Products\Queries\GetProduct\" />
+    <Folder Include="Features\Products\Queries\GetAllProducts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="14.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebAPI_CleanArchitecture.Domain\WebAPI_CleanArchitecture.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
