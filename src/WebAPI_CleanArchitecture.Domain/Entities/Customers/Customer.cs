@@ -32,17 +32,17 @@ namespace WebAPI_CleanArchitecture.Domain.Entities.Customers
 
 
         // << Methods-Factory Design Pattern >>
-        public static Customer Create(CreateCustomerDto request)
+        public static Customer Create(CreateCustomerDto dto)
         {
             var customer = new Customer
-                (new Title(request.Title),
+                (new Title(dto.Title),
 
                 new Address
-                (request.City,
-                request.FirstLineAddress,
-                request.SecondLineAddress,
-                request.Country,
-                request.PostCode),
+                (dto.City,
+                dto.FirstLineAddress,
+                dto.SecondLineAddress,
+                dto.Country,
+                dto.PostCode),
 
                 new Money(0));
 
@@ -51,15 +51,15 @@ namespace WebAPI_CleanArchitecture.Domain.Entities.Customers
             return customer;
         }
 
-        public void Update(UpdateCustomerDto request)
+        public void Update(UpdateCustomerDto dto)
         {
-            Title = new Title(request.Title);
+            Title = new Title(dto.Title);
             Address = new Address(
-                request.City,
-                request.FirstLineAddress,
-                request.SecondLineAddress,
-                request.Country,
-                request.PostCode);
+                dto.City,
+                dto.FirstLineAddress,
+                dto.SecondLineAddress,
+                dto.Country,
+                dto.PostCode);
 
         }
     }

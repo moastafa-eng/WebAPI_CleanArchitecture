@@ -24,14 +24,14 @@ namespace WebAPI_CleanArchitecture.Domain.Entities.Products
 
 
         // << Methods - Factory Design Pattern >>
-        public static Product Create(CreateProductDto request)
-        => new (new Title (request.Description),
-            new Money(request.UnitPrice), Guid.NewGuid()); // Generate New Guid
+        public static Product Create(CreateProductDto dto)
+        => new (new Title (dto.Description),
+            new Money(dto.UnitPrice), Guid.NewGuid()); // Generate New Guid
 
-        public void Update(UpdateProductDto request)
+        public void Update(UpdateProductDto dto)
         {
-            Description = new Title(request.Description);
-            UnitPrice = new Money (request.UnitPrice);
+            Description = new Title(dto.Description);
+            UnitPrice = new Money (dto.UnitPrice);
         }
     }
 }

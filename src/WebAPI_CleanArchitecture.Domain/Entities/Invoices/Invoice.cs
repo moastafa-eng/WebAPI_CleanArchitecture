@@ -37,17 +37,17 @@ namespace WebAPI_CleanArchitecture.Domain.Entities.Invoices
 
 
         // << Methods-Factory Design Pattern >>
-        public static async Task<Invoice> Create(CreateInvoiceDto request, IUnitOfWork unitOfWork)
+        public static async Task<Invoice> Create(CreateInvoiceDto dto, IUnitOfWork unitOfWork)
         {
             // check if PurchasedProducts is not null or empty
-            if (request.PurchasedProducts is null || request.PurchasedProducts.Count == 0)
+            if (dto.PurchasedProducts is null || dto.PurchasedProducts.Count == 0)
                 throw new InvalidOperationException("Empty Invoice can not be created!");
 
 
             ICollection<InvoiceItem> purchaseProducts = [];
             var invoiceId = Guid.NewGuid();
 
-            foreach(var purchaseProduct in request.PurchasedProducts)
+            foreach(var purchaseProduct in dto.PurchasedProducts)
             {
                 // get product by id
                 var product = await unitOfWork.GetRepository<Product>()
@@ -72,10 +72,10 @@ namespace WebAPI_CleanArchitecture.Domain.Entities.Invoices
 
             var invoice = new Invoice
             (
-                new PoNumber(request.PoNumber),
+                new PoNumber(dto.PoNumber),
                 new Money(totalBalance),
                 purchaseProducts,
-                request.CustomerId,
+                dto.CustomerId,
                 invoiceId);
 
             // Raise Domain Event if every thing is alright
