@@ -11,6 +11,15 @@ namespace WebAPI_CleanArchitecture.Application.Features.Products
         public Decimal UnitPrice { get; set; }
     }
 
+    public class ProductResponseCollection : IResult
+    {
+        //=========================================================================
+        //IReadOnlyCollection : Read only from Database, the Edit's is not allowed
+        // and this is the best Practice for reading from Database
+        //=========================================================================
+        public IReadOnlyCollection<ProductResponse> Products { get; set; } = null!;
+    }
+
     public class ProductMapper : Profile
     {
         public ProductMapper()
