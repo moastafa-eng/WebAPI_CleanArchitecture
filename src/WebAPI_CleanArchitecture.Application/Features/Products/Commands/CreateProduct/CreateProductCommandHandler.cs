@@ -5,7 +5,7 @@ using WebAPI_CleanArchitecture.Domain.Entities.Products;
 
 namespace WebAPI_CleanArchitecture.Application.Features.Products.Commands.CreateProduct
 {
-    public sealed class CreateProductCommandHandler (IUnitOfWork _unitOfWork, IMapper _mapper)
+    internal sealed class CreateProductCommandHandler (IUnitOfWork _unitOfWork, IMapper _mapper)
         : ICommandHandler<CreateProductCommand, ProductResponse>
     {
         public async Task<Result<ProductResponse>> Handle(CreateProductCommand request, CancellationToken cancellationToken)

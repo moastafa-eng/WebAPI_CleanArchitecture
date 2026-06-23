@@ -1,9 +1,4 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebAPI_CleanArchitecture.Application.Abstraction.Messaging.Queries;
 using WebAPI_CleanArchitecture.Domain.Abstraction;
 using WebAPI_CleanArchitecture.Domain.Entities.Products;

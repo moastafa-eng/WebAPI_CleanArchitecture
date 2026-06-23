@@ -11,9 +11,6 @@
     <Folder Include="Abstraction\Caching\" />
     <Folder Include="Abstraction\Emailing\" />
     <Folder Include="Exceptions\" />
-    <Folder Include="Features\Customers\Commands\CreateCustomer\" />
-    <Folder Include="Features\Customers\Commands\RemoveCustomer\" />
-    <Folder Include="Features\Customers\Commands\UpdateCustomer\" />
     <Folder Include="Features\Customers\Queries\GetCustomer\" />
     <Folder Include="Features\Customers\Queries\GetAllCustomers\" />
     <Folder Include="Features\Invoices\Commands\CreateInvoice\" />
