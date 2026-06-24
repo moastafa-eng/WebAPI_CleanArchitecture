@@ -7,8 +7,9 @@ namespace WebAPI_CleanArchitecture.Domain.Entities.InvoiceItems
 {
     public sealed class InvoiceItem : BaseEntity
     {
-        internal InvoiceItem(Money sellPrice, Quantity quantity, Guid invoiceId, Guid id) : base(id)
+        internal InvoiceItem(Money sellPrice, Quantity quantity, Guid invoiceId, Guid id, Title description) : base(id)
         {
+            Description = description;
             SellPrice = sellPrice;
             Quantity = quantity;
             TotalPrice = new Money (sellPrice.value * quantity.value);
@@ -16,13 +17,14 @@ namespace WebAPI_CleanArchitecture.Domain.Entities.InvoiceItems
         }
 
         // << Properties >>
-        public Money SellPrice { get; set; } = null!;
-        public Quantity Quantity { get; set; } = null!;
-        public Money TotalPrice { get; set; } = null!;
+        public Title Description { get; private set; } = null!;
+        public Money SellPrice { get; private set; } = null!;
+        public Quantity Quantity { get; private set; } = null!;
+        public Money TotalPrice { get; private set; } = null!;
 
 
         // << Navigational Properties >>
-        public Invoice Invoice { get; set; } = null!;
-        public Guid InvoiceId { get; set; } // FK
+        public Invoice Invoice { get; private set; } = null!;
+        public Guid InvoiceId { get; private set; } // FK
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using WebAPI_CleanArchitecture.Domain.Abstraction;
+﻿using WebAPI_CleanArchitecture.Domain.Abstraction;
 using WebAPI_CleanArchitecture.Domain.Entities.Customers;
 using WebAPI_CleanArchitecture.Domain.Entities.InvoiceItems;
 using WebAPI_CleanArchitecture.Domain.Entities.InvoiceItems.ValueObjects;
@@ -58,11 +57,15 @@ namespace WebAPI_CleanArchitecture.Domain.Entities.Invoices
                 // create invoice item
                 var invoiceItem = new InvoiceItem
                 (
-                    new Money(product.UnitPrice.value),
+                    product.UnitPrice,
                     new Quantity(purchaseProduct.Quantity),
                     invoiceId,
-                    Guid.NewGuid());
-                
+                    Guid.NewGuid(),
+                    product.Description)
+                {
+
+                };
+
                 // add invoice item to purchased products
                 purchaseProducts.Add(invoiceItem);
             }
