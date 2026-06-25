@@ -4,7 +4,7 @@ using WebAPI_CleanArchitecture.Domain.Abstraction;
 using WebAPI_CleanArchitecture.Domain.Entities.Customers;
 using WebAPI_CleanArchitecture.Domain.Entities.Customers.Events;
 
-namespace WebAPI_CleanArchitecture.Application.Features.Customers.Commands.CreateCustomer.EventHandler
+namespace WebAPI_CleanArchitecture.Application.Features.Customers.Commands.CreateCustomer.EventHandlers
 {
     internal sealed class CustomerCreatedEventHandler(IUnitOfWork _unitOfWork, IEmailService  _emailService)
         : INotificationHandler<CustomerCreatedDomainEvent>

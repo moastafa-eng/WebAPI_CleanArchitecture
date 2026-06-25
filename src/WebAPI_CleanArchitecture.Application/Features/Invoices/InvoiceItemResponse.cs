@@ -2,7 +2,7 @@
 using WebAPI_CleanArchitecture.Domain.Entities.InvoiceItems;
 using WebAPI_CleanArchitecture.Domain.Entities.Invoices;
 
-namespace WebAPI_CleanArchitecture.Application.Features.Invoices.Commands
+namespace WebAPI_CleanArchitecture.Application.Features.Invoices
 {
     public class InvoiceItemResponse
     {

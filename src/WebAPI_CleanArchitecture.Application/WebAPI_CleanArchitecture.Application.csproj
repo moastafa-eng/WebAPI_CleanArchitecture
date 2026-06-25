@@ -10,10 +10,6 @@
     <Folder Include="Abstraction\Behaviors\" />
     <Folder Include="Abstraction\Caching\" />
     <Folder Include="Exceptions\" />
-    <Folder Include="Features\Invoices\Commands\RemoveInvoice\" />
-    <Folder Include="Features\Invoices\Commands\UpdateInvoice\" />
-    <Folder Include="Features\Invoices\Queries\GetInvoice\" />
-    <Folder Include="Features\Invoices\Queries\GetAllInvoices\" />
   </ItemGroup>
 
   <ItemGroup>

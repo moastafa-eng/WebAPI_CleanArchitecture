@@ -4,7 +4,7 @@ using WebAPI_CleanArchitecture.Application.Features.Customers;
 using WebAPI_CleanArchitecture.Domain.Abstraction;
 using WebAPI_CleanArchitecture.Domain.Entities.Invoices;
 
-namespace WebAPI_CleanArchitecture.Application.Features.Invoices.Commands
+namespace WebAPI_CleanArchitecture.Application.Features.Invoices
 {
     // The Response
     public class InvoiceResponse : IResult

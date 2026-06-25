@@ -62,5 +62,9 @@ namespace WebAPI_CleanArchitecture.Domain.Entities.Customers
                 dto.PostCode);
 
         }
+
+        public void UpdateBalance(Money invoiceAmount)
+        => Balance = new Money(Balance.value + invoiceAmount.value);
+       
     }
 }
