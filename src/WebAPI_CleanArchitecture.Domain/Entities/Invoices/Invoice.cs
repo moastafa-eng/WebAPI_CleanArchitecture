@@ -13,13 +13,15 @@ namespace WebAPI_CleanArchitecture.Domain.Entities.Invoices
     public sealed class Invoice : BaseEntity
     {
         public Invoice(PoNumber poNumber, Money totalBalance,
-            ICollection<InvoiceItem> purchasedProducts, Guid customerId, Guid InvoiceId) : base(InvoiceId)
+            ICollection<InvoiceItem> purchasedProducts, Guid customerId, Guid Id) : base(Id)
         {
             PoNumber = poNumber;
             TotalBalance = totalBalance;
             PurchasedProducts = purchasedProducts;
             CustomerId = customerId;
         }
+
+        private Invoice() { }
 
 
         // << Properties >>
