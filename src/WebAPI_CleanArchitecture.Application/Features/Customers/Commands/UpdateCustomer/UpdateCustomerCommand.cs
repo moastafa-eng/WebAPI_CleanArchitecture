@@ -3,5 +3,5 @@ using WebAPI_CleanArchitecture.Domain.Entities.Customers.DTOs;
 
 namespace WebAPI_CleanArchitecture.Application.Features.Customers.Commands.UpdateCustomer
 {
-    public record UpdateCustomerCommand(UpdateCustomerDto Dto) : ICommand;
+    public record UpdateCustomerCommand(UpdateCustomerDto Dto, Guid customerId) : ICommand;
 }

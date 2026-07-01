@@ -13,8 +13,5 @@ namespace WebAPI_CleanArchitecture.Domain.Entities.Customers.DTOs
     }
 
     public class CreateCustomerDto : BaseCustomerDto;
-    public class UpdateCustomerDto : BaseCustomerDto
-    {
-        public Guid CustomerId { get; set; }
-    }
+    public class UpdateCustomerDto : BaseCustomerDto;
 }

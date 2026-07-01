@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WebAPI_CleanArchitecture.Application.Abstraction.Messaging.Commands;
+﻿using WebAPI_CleanArchitecture.Application.Abstraction.Messaging.Commands;
 using WebAPI_CleanArchitecture.Domain.Abstraction;
 using WebAPI_CleanArchitecture.Domain.Entities.Customers;
 
@@ -15,16 +10,16 @@ namespace WebAPI_CleanArchitecture.Application.Features.Customers.Commands.Updat
         public async Task<Result<NoContentDto>> Handle(UpdateCustomerCommand request, CancellationToken cancellationToken)
         {
             // Get Customer by Id
-            var customer = await _unitOfWork.GetRepository<Customer>().GetByIdAsync(request.Dto.CustomerId);
+            var customer = await _unitOfWork.GetRepository<Customer>().GetByIdAsync(request.customerId);
 
 
 
-            // check if customer is null
+            // check if customer is null with new values
             if (customer is null)
-                return Result<NoContentDto>.Fail(404, "Null.Error", $"The customer with id {request.Dto.CustomerId} is not found!");
+                return Result<NoContentDto>.Fail(404, "Null.Error", $"The customer with id {request.customerId} is not found!");
 
-
-
+            // reinitialize the Current customer
+            customer.Update(request.Dto);
 
             // update row in database then save the changes
             _unitOfWork.GetRepository<Customer>().Update(customer);

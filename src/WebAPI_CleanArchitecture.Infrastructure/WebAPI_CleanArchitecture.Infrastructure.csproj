@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WebAPI_CleanArchitecture.Application\WebAPI_CleanArchitecture.Application.csproj" />
     <ProjectReference Include="..\WebAPI_CleanArchitecture.Domain\WebAPI_CleanArchitecture.Domain.csproj" />
   </ItemGroup>
 

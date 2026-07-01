@@ -2,5 +2,5 @@
 
 namespace WebAPI_CleanArchitecture.Application.Features.Customers.Queries.GetAllCustomers
 {
-    internal record GetAllCustomersQuery : IQuery<CustomerResponseCollection>;
+    public record GetAllCustomersQuery : IQuery<CustomerResponseCollection>;
 }

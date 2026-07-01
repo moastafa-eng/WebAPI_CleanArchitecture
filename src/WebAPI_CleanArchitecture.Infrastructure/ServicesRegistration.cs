@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebAPI_CleanArchitecture.Application.Abstraction.Emailing;
 using WebAPI_CleanArchitecture.Domain.Abstraction;
 using WebAPI_CleanArchitecture.Infrastructure.Repositories;
+using WebAPI_CleanArchitecture.Infrastructure.Services.Emailing;
 using WebAPI_CleanArchitecture.Infrastructure.UnitOfWorks;
 
 namespace WebAPI_CleanArchitecture.Infrastructure
@@ -41,6 +43,7 @@ namespace WebAPI_CleanArchitecture.Infrastructure
         {
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IEmailService, EmailService>();
 
             return services;
         }

@@ -27,7 +27,7 @@ namespace WebAPI_CleanArchitecture.Application.Features.Customers.Commands.Creat
             var response = _mapper.Map<CustomerResponse>(customer);
 
             // return success with data and status code 201
-            return Result<CustomerResponse>.Success(response, 204);
+            return Result<CustomerResponse>.Success(response, 201);
         }
     }
 }

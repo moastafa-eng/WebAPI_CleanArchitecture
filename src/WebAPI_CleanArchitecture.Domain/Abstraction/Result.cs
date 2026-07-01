@@ -2,6 +2,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace WebAPI_CleanArchitecture.Domain.Abstraction
 {
@@ -10,6 +11,7 @@ namespace WebAPI_CleanArchitecture.Domain.Abstraction
 
         // << Properties >>
         public TDto? Data { get; set; }
+        [JsonIgnore]
         public bool IsNotSuccessful { get; set; }
         public int StatusCode { get; set; }
         public Dictionary<string, string>? Errors { get; set; }

@@ -7,7 +7,7 @@ namespace WebAPI_CleanArchitecture.Application.Features.Customers
 {
     public class CustomerResponse : IResult
     {
-        public int Id { get; private set; }
+        public Guid Id { get; private set; }
         public string Title { get; private set; } = null!;
         public Address Address { get; private set; } = null!;
         public decimal Balance { get; private set; }
