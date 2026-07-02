@@ -9,9 +9,6 @@ namespace WebAPI_CleanArchitecture.Domain.Entities.Products.DTOs
     }
 
     public class CreateProductDto : BaseProductDto;
-    public class UpdateProductDto : BaseProductDto
-    {
-        public Guid ProductId { get; set; }
-    }
+    public class UpdateProductDto : BaseProductDto;
 
 }

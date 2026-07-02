@@ -33,7 +33,7 @@ namespace WebAPI_CleanArchitecture.APIs.Controllers.VersionOne.Customers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCustomer(CancellationToken cancellationToken = default)
+        public async Task<IActionResult> GetAllCustomers(CancellationToken cancellationToken = default)
         {
             var response = await _sender.Send(new GetAllCustomersQuery(), cancellationToken);
 
