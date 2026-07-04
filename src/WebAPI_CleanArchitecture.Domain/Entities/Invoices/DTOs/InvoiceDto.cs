@@ -15,8 +15,5 @@ namespace WebAPI_CleanArchitecture.Domain.Entities.Invoices.DTOs
         public ICollection<CreateInvoiceItemDto> PurchasedProducts { get; set; } = null!;
     }
 
-    public class UpdateInvoiceDto : BaseInvoiceDto
-    {
-        public Guid InvoiceId { get; set; }
-    }
+    public class UpdateInvoiceDto : BaseInvoiceDto { }
 }

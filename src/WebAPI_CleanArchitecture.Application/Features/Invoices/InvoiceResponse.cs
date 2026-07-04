@@ -11,9 +11,9 @@ namespace WebAPI_CleanArchitecture.Application.Features.Invoices
     {
         public Guid Id { get; set; }
         public string PoNumber { get; set; } = null!;
-        public decimal InvoiceBalance { get; set; }
         public CustomerResponse Customer { get; set; } = null!;
         public ICollection<InvoiceItemResponse> PurchasedProducts { get; set; } = null!;
+        public decimal InvoiceBalance { get; set; }
     }
 
     
@@ -31,9 +31,9 @@ namespace WebAPI_CleanArchitecture.Application.Features.Invoices
         {
             CreateMap<Invoice, InvoiceResponse>()
                 .ForMember(dto => dto.PoNumber, opt => opt.MapFrom(ent => ent.PoNumber.value))
-                .ForMember(dto => dto.InvoiceBalance, opt => opt.MapFrom(ent => ent.TotalBalance.value));
-                //.ForMember(dto => dto.Customer, opt => opt.MapFrom(ent => ent.Customer));
-                
+                .ForMember(dto => dto.InvoiceBalance, opt => opt.MapFrom(ent => ent.TotalBalance.value))
+                .ForMember(dto => dto.Customer, opt => opt.MapFrom(ent => ent.Customer));
+
         }
     }
 }

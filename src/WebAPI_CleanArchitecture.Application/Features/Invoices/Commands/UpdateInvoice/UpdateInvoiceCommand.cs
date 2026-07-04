@@ -3,5 +3,5 @@ using WebAPI_CleanArchitecture.Domain.Entities.Invoices.DTOs;
 
 namespace WebAPI_CleanArchitecture.Application.Features.Invoices.Commands.UpdateInvoice
 {
-    public record UpdateInvoiceCommand(UpdateInvoiceDto Dto) : ICommand;
+    public record UpdateInvoiceCommand(UpdateInvoiceDto Dto, Guid InvoiceId) : ICommand;
 }

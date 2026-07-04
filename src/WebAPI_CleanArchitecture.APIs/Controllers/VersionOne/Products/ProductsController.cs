@@ -1,16 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using WebAPI_CleanArchitecture.Application.Features.Customers.Commands.CreateCustomer;
-using WebAPI_CleanArchitecture.Application.Features.Customers.Commands.RemoveCustomer;
-using WebAPI_CleanArchitecture.Application.Features.Customers.Commands.UpdateCustomer;
-using WebAPI_CleanArchitecture.Application.Features.Customers.Queries.GetAllCustomers;
-using WebAPI_CleanArchitecture.Application.Features.Customers.Queries.GetCustomer;
 using WebAPI_CleanArchitecture.Application.Features.Products.Commands.CreateProduct;
 using WebAPI_CleanArchitecture.Application.Features.Products.Commands.RemoveProduct;
 using WebAPI_CleanArchitecture.Application.Features.Products.Commands.UpdateProduct;
 using WebAPI_CleanArchitecture.Application.Features.Products.Queries.GetAllProducts;
 using WebAPI_CleanArchitecture.Application.Features.Products.Queries.GetProduct;
-using WebAPI_CleanArchitecture.Domain.Entities.Customers.DTOs;
 using WebAPI_CleanArchitecture.Domain.Entities.Products.DTOs;
 
 namespace WebAPI_CleanArchitecture.APIs.Controllers.VersionOne.Products

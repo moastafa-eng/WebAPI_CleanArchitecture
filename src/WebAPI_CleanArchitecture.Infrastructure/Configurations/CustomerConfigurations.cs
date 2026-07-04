@@ -51,9 +51,14 @@ namespace WebAPI_CleanArchitecture.Infrastructure.Configurations
                 .HasPrecision(18, 2);
 
 
+            //builder.HasMany(customer => customer.Invoices)
+            //    .WithOne(customer => customer.Customer)
+            //    .HasForeignKey(customer => customer.Id)
+            //    .OnDelete(DeleteBehavior.Restrict);
+
             builder.HasMany(customer => customer.Invoices)
-                .WithOne(customer => customer.Customer)
-                .HasForeignKey(customer => customer.Id)
+                .WithOne(x => x.Customer)
+                .HasForeignKey(x => x.CustomerId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.Property(customer => customer.RowVersion)

@@ -194,7 +194,7 @@ namespace WebAPI_CleanArchitecture.Infrastructure.Migrations
                     b.Navigation("Invoice");
                 });
 
-            modelBuilder.Entity("WebAPI_CleanArchitecture.Domain.Entities.Invoices.Invoice", b =>
+                modelBuilder.Entity("WebAPI_CleanArchitecture.Domain.Entities.Invoices.Invoice", b =>
                 {
                     b.HasOne("WebAPI_CleanArchitecture.Domain.Entities.Customers.Customer", "Customer")
                         .WithMany("Invoices")

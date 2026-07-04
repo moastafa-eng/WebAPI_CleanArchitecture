@@ -10,13 +10,13 @@ namespace WebAPI_CleanArchitecture.Application.Features.Invoices.Commands.Update
         public async Task<Result<NoContentDto>> Handle(UpdateInvoiceCommand request, CancellationToken cancellationToken)
         {
             // Get Invoice By ID
-            var invoice = await _unitOfWork.GetRepository<Invoice>().GetByIdAsync(request.Dto.InvoiceId, cancellationToken);
+            var invoice = await _unitOfWork.GetRepository<Invoice>().GetByIdAsync(request.InvoiceId, cancellationToken);
 
 
 
             // Check is Invoice Exist or not
             if (invoice is null)
-                return Result<NoContentDto>.Fail(404, "Null.Error", $"The invoice with id {request.Dto.InvoiceId} is not found!");
+                return Result<NoContentDto>.Fail(404, "Null.Error", $"The invoice with id {request.InvoiceId} is not found!");
 
 
             // Update Invoice And Save Changed On Database]

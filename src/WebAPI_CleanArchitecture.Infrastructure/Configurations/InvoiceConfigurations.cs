@@ -23,10 +23,15 @@ namespace WebAPI_CleanArchitecture.Infrastructure.Configurations
                 .HasPrecision(18, 2);
 
 
+            //builder.HasMany(invoice => invoice.PurchasedProducts)
+            //    .WithOne(invoice => invoice.Invoice)
+            //    .HasForeignKey(invoice => invoice.InvoiceId)
+            //    .OnDelete(DeleteBehavior.Cascade);
+
             builder.HasMany(invoice => invoice.PurchasedProducts)
-                .WithOne(invoice => invoice.Invoice)
-                .HasForeignKey(invoice => invoice.InvoiceId)
-                .OnDelete(DeleteBehavior.Cascade);
+                    .WithOne(x => x.Invoice)
+                    .HasForeignKey(x => x.InvoiceId)
+                    .OnDelete(DeleteBehavior.Cascade);
 
             builder.Property(invoice => invoice.RowVersion)
                 .IsRowVersion();
