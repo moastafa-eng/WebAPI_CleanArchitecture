@@ -26,7 +26,7 @@ namespace WebAPI_CleanArchitecture.Application.Features.Invoices.Queries.GetInvo
 
 
             // return Success Message With The Data
-            return Result<InvoiceResponse>.Success(response, 204);
+            return Result<InvoiceResponse>.Success(response, 201);
         }
     }
 }

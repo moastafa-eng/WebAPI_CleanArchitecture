@@ -4,39 +4,39 @@ using WebAPI_CleanArchitecture.Domain.Entities.InvoiceItems;
 using WebAPI_CleanArchitecture.Domain.Entities.InvoiceItems.ValueObjects;
 using WebAPI_CleanArchitecture.Domain.Entities.Shared;
 
-namespace WebAPI_CleanArchitecture.Infrastructure.Configurations
+namespace YouTubeApiCleanArchitecture.Infrastructure.Configurations;
+public class InvoiceItemConfiguration : IEntityTypeConfiguration<InvoiceItem>
 {
-    public class InvoiceItemConfigurations : IEntityTypeConfiguration<InvoiceItem>
+    public void Configure(EntityTypeBuilder<InvoiceItem> builder)
     {
-        public void Configure(EntityTypeBuilder<InvoiceItem> builder)
-        {
-            builder.Property(invoiceItem => invoiceItem.SellPrice)
-                .HasConversion(
-                sellPrice => sellPrice.value, value => new Money(value))
-                .IsRequired()
-                .HasPrecision(18, 2);
+        builder.Property(item => item.SellPrice)
+            .HasConversion(
+                sellPrice => sellPrice.value,
+                value => new Money(value))
+            .IsRequired()
+            .HasPrecision(18, 2);
 
-            builder.Property(invoiceItem => invoiceItem.Quantity)
-                .HasConversion(
-                quantity => quantity.value, value => new Quantity(value))
-                .IsRequired();
+        builder.Property(item => item.TotalPrice)
+            .HasConversion(
+                totalPrice => totalPrice.value,
+                value => new Money(value))
+            .IsRequired()
+            .HasPrecision(18, 2);
 
-            builder.Property(invoiceItem => invoiceItem.TotalPrice)
-                .HasConversion(
-                totalPrice => totalPrice.value, value => new Money(value))
-                .IsRequired()
-                .HasPrecision(18, 2);
+        builder.Property(item => item.Quantity)
+            .HasConversion(
+                quantity => quantity.value,
+                value => new Quantity(value))
+            .IsRequired();
 
-            builder.Property(product => product.Description)
-                .HasConversion(
-                description => description.value, value => new Title(value))
-                .IsRequired()
-                .HasMaxLength(45);
+        builder.Property(x => x.RowVersion)
+           .IsRowVersion();
 
-
-
-            builder.Property(invoiceItem => invoiceItem.RowVersion)
-                .IsRowVersion();
-        }
+        builder.Property(item => item.Description)
+           .HasConversion(
+               description => description.value,
+               value => new Title(value))
+           .IsRequired()
+           .HasMaxLength(45);
     }
 }

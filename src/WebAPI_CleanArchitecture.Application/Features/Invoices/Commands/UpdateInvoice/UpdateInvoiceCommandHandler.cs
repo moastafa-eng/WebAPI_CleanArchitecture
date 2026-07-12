@@ -18,6 +18,7 @@ namespace WebAPI_CleanArchitecture.Application.Features.Invoices.Commands.Update
             if (invoice is null)
                 return Result<NoContentDto>.Fail(404, "Null.Error", $"The invoice with id {request.InvoiceId} is not found!");
 
+            invoice.Update(request.Dto);
 
             // Update Invoice And Save Changed On Database]
             _unitOfWork.GetRepository<Invoice>().Update(invoice);
