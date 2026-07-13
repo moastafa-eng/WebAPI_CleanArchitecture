@@ -15,6 +15,7 @@ namespace WebAPI_CleanArchitecture.Application.Features.Invoices.Commands.Create
             // Get Invoice With Target Id
             var invoice = await _unitOfWork.GetRepository<Invoice>()
                 .GetAll()
+                .AsTracking()
                 .Include(i => i.Customer)
                 .FirstOrDefaultAsync(i => i.Id == notification.InvoiceId, cancellationToken);
 

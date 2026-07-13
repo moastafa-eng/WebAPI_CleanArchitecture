@@ -14,7 +14,7 @@ namespace WebAPI_CleanArchitecture.Domain.Abstraction
         [JsonIgnore]
         public bool IsNotSuccessful { get; set; }
         public int StatusCode { get; set; }
-        public Dictionary<string, string>? Errors { get; set; }
+        public Error? Errors { get; set; }
 
 
 
@@ -40,11 +40,15 @@ namespace WebAPI_CleanArchitecture.Domain.Abstraction
         {
             StatusCode = statusCode;
             IsNotSuccessful = true;
-            Errors = new() { { errorCode, errorMassage } };
+            Errors = new()
+            {
+                ErrorCode = errorCode,
+                ErrorMessages = [errorMassage]
+            };
         }
 
         // << Fail with many errors >>
-        private Result(int statusCode, Dictionary<string, string> errors)
+        private Result(int statusCode, Error errors)
         {
             StatusCode = statusCode;
             IsNotSuccessful = true;
@@ -63,10 +67,14 @@ namespace WebAPI_CleanArchitecture.Domain.Abstraction
         public static Result<TDto> Fail(int statusCode, string errorCode, string errorMessage)
             => new(statusCode, errorCode, errorMessage);
 
-        public static Result<TDto> Fail(int statusCode, Dictionary<string, string> errors)
+        public static Result<TDto> Fail(int statusCode, Error errors)
             => new(statusCode, errors);
     }
 
-
+    public class Error
+    {
+        public string ErrorCode { get; set; } = null!;
+        public List<string> ErrorMessages { get; set; } = null!;
+    }
     public class NoContentDto : IResult;
 }

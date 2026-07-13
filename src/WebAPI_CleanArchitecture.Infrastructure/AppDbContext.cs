@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
+using WebAPI_CleanArchitecture.Domain.Abstraction;
 using WebAPI_CleanArchitecture.Domain.Entities.Customers;
 using WebAPI_CleanArchitecture.Domain.Entities.InvoiceItems;
 using WebAPI_CleanArchitecture.Domain.Entities.Invoices;
@@ -8,11 +10,17 @@ namespace WebAPI_CleanArchitecture.Infrastructure
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions options) : base(options) { }
+        private readonly IPublisher _publisher;
+
+        public AppDbContext(DbContextOptions options, IPublisher publisher) : base(options)
+        {
+            _publisher = publisher;
+        }
 
         // Protected level to Prevent any one outside the class to create instance without options 
         // make it protected level not private because EfCore and UnitTesting.
-        protected AppDbContext() { } 
+
+        /*protected AppDbContext() { } */
 
         // Add DbSets
         public DbSet<Product> Products { get; set; }
@@ -24,6 +32,38 @@ namespace WebAPI_CleanArchitecture.Infrastructure
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
             base.OnModelCreating(modelBuilder);
+        }
+
+
+
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            var result = await base.SaveChangesAsync(cancellationToken);
+
+            await PublishDomainEvents();
+
+            return result;
+        }
+
+        private async Task PublishDomainEvents()
+        {
+            var domainEvents = ChangeTracker
+                .Entries<BaseEntity>()
+                .Select(entry => entry.Entity)
+                .SelectMany(entity =>
+                {
+                    var domainEvents = entity.GetDomainEvents();
+                    entity.ClearDomainEvents();
+
+                    return domainEvents;
+                }).ToList();
+
+            foreach(var domainEvent in domainEvents)
+            {
+                await _publisher.Publish(domainEvent);
+            }
+
+               
         }
     }
 }
