@@ -22,7 +22,7 @@ namespace WebAPI_CleanArchitecture.Application.Features.Invoices.Queries.GetInvo
 
             //Check If Invoice Exist
             if (response is null)
-                return Result<InvoiceResponse>.Fail(404, "Null.Error", $"The invoice with Id {request.InvoiceId} is not found!");
+                return Result<InvoiceResponse>.Failed(404, "Null.Error", $"The invoice with Id {request.InvoiceId} is not found!");
 
 
             // return Success Message With The Data

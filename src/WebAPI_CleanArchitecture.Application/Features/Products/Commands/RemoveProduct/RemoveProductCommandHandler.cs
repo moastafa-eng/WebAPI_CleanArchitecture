@@ -15,7 +15,7 @@ namespace WebAPI_CleanArchitecture.Application.Features.Products.Commands.Remove
             // check if product is null return Failed Message with status code 400
             if (product is null)
             {
-                return Result<NoContentDto>.Fail(400, "Null.Error", $"The product with id {request.ProductId} is not found");
+                return Result<NoContentDto>.Failed(400, "Null.Error", $"The product with id {request.ProductId} is not found");
             }
 
             // else save changes on Database and return Success with Status code 204

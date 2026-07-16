@@ -16,14 +16,14 @@ namespace WebAPI_CleanArchitecture.Application.Features.Customers.Commands.Updat
 
             // check if customer is null with new values
             if (customer is null)
-                return Result<NoContentDto>.Fail(404, "Null.Error", $"The customer with id {request.customerId} is not found!");
+                return Result<NoContentDto>.Failed(404, "Null.Error", $"The customer with id {request.customerId} is not found!");
 
             // reinitialize the Current customer
             customer.Update(request.Dto);
 
             // update row in database then save the changes
             _unitOfWork.GetRepository<Customer>().Update(customer);
-            await _unitOfWork.CommitAsync(cancellationToken);
+            await _unitOfWork.CommitAsync(cancellationToken, CheckForConcurrency: true);
 
             return Result<NoContentDto>.Success(204);
 

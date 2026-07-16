@@ -64,10 +64,10 @@ namespace WebAPI_CleanArchitecture.Domain.Abstraction
         public static Result<TDto> Success(int statusCode)
             => new(statusCode);
 
-        public static Result<TDto> Fail(int statusCode, string errorCode, string errorMessage)
+        public static Result<TDto> Failed(int statusCode, string errorCode, string errorMessage)
             => new(statusCode, errorCode, errorMessage);
 
-        public static Result<TDto> Fail(int statusCode, Error errors)
+        public static Result<TDto> Failed(int statusCode, Error errors)
             => new(statusCode, errors);
     }
 

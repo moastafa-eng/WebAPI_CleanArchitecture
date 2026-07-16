@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebAPI_CleanArchitecture.Domain.Abstraction;
+using WebAPI_CleanArchitecture.Domain.Exceptions;
 using WebAPI_CleanArchitecture.Infrastructure.Repositories;
 
 namespace WebAPI_CleanArchitecture.Infrastructure.UnitOfWorks
@@ -7,7 +8,7 @@ namespace WebAPI_CleanArchitecture.Infrastructure.UnitOfWorks
     public class UnitOfWork(AppDbContext _context) : IUnitOfWork
     {
 
-        public async Task<string> CommitAsync(CancellationToken cancellationToken = default, bool CheckForConcurrency = false)
+        public async Task CommitAsync(CancellationToken cancellationToken = default, bool CheckForConcurrency = false)
         {
             try
             {
@@ -19,10 +20,8 @@ namespace WebAPI_CleanArchitecture.Infrastructure.UnitOfWorks
             // the Concurrency work with RowVersion
             catch(DbUpdateConcurrencyException) when(CheckForConcurrency)
             {
-                return "A concurrency conflict occurred while saving changes";
+                throw new ConcurrencyException(["A Concurrency exception occurred while saving changes"]);
             }
-
-            return string.Empty;
         }
 
         public IGenericRepository<TEntity> GetRepository<TEntity>() where TEntity : BaseEntity

@@ -16,7 +16,7 @@ namespace WebAPI_CleanArchitecture.Application.Features.Invoices.Commands.Remove
 
             // Check is Invoice Exist or not
             if (invoice is null)
-                return Result<NoContentDto>.Fail(404, "Null.Error", $"The invoice with id {request.InvoiceId} is not found!");
+                return Result<NoContentDto>.Failed(404, "Null.Error", $"The invoice with id {request.InvoiceId} is not found!");
 
 
 

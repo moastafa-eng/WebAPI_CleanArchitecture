@@ -16,13 +16,13 @@ namespace WebAPI_CleanArchitecture.Application.Features.Invoices.Commands.Update
 
             // Check is Invoice Exist or not
             if (invoice is null)
-                return Result<NoContentDto>.Fail(404, "Null.Error", $"The invoice with id {request.InvoiceId} is not found!");
+                return Result<NoContentDto>.Failed(404, "Null.Error", $"The invoice with id {request.InvoiceId} is not found!");
 
             invoice.Update(request.Dto);
 
             // Update Invoice And Save Changed On Database]
             _unitOfWork.GetRepository<Invoice>().Update(invoice);
-            await _unitOfWork.CommitAsync(cancellationToken);
+            await _unitOfWork.CommitAsync(cancellationToken, CheckForConcurrency: true);
 
 
             // return Success Message with No Content

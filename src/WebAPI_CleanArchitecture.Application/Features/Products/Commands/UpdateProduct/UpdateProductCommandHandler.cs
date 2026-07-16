@@ -14,14 +14,14 @@ namespace WebAPI_CleanArchitecture.Application.Features.Products.Commands.Update
 
             // if product is null return Failed message with status code 404;
             if (product is null)
-                return Result<NoContentDto>.Fail(404, "Null.Error", $"The product with id {request.ProductId} is not found");
+                return Result<NoContentDto>.Failed(404, "Null.Error", $"The product with id {request.ProductId} is not found");
 
             // reinitialize the Current Product
             product.Update(request.Dto);
 
             // Save changes on Database
             _unitOfWork.GetRepository<Product>().Update(product);
-            await _unitOfWork.CommitAsync(cancellationToken);
+            await _unitOfWork.CommitAsync(cancellationToken, CheckForConcurrency: true);
 
             // return Success Messages with no content and status code 204
             return Result<NoContentDto>.Success(204);

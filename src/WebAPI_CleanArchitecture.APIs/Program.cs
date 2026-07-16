@@ -1,4 +1,5 @@
 
+using WebAPI_CleanArchitecture.APIs.Extensions;
 using WebAPI_CleanArchitecture.Application;
 using WebAPI_CleanArchitecture.Infrastructure;
 
@@ -31,7 +32,10 @@ namespace WebAPI_CleanArchitecture.APIs
                 app.UseSwaggerUI();
             }
 
+
             app.UseHttpsRedirection();
+
+            app.UseCustomExceptionHandler();
 
             app.UseAuthorization();
 

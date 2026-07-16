@@ -23,13 +23,13 @@ namespace WebAPI_CleanArchitecture.Application.Features.Customers.Commands.Remov
 
             // check if customer is null return failed message with status code : 400
             if (customer is null)
-                return Result<NoContentDto>.Fail(400, "Null.Error", $"The customer with Id {request.CustomerId} is not found!");
+                return Result<NoContentDto>.Failed(400, "Null.Error", $"The customer with Id {request.CustomerId} is not found!");
 
 
 
             // check if the customer have any invoices
             if (customer.Invoices.Count > 0)
-                return Result<NoContentDto>.Fail(400, "Invalid.Error", $"The customer with id {request.CustomerId} has invoices.");
+                return Result<NoContentDto>.Failed(400, "Invalid.Error", $"The customer with id {request.CustomerId} has invoices.");
 
 
 

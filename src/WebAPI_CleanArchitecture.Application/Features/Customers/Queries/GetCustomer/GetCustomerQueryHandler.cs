@@ -17,7 +17,7 @@ namespace WebAPI_CleanArchitecture.Application.Features.Customers.Queries.GetCus
 
             // check if customer is null
             if (customer is null)
-                return Result<CustomerResponse>.Fail(404, "Null.Error", $"The customer with id {request.CustomerId} is not found!");
+                return Result<CustomerResponse>.Failed(404, "Null.Error", $"The customer with id {request.CustomerId} is not found!");
 
 
 

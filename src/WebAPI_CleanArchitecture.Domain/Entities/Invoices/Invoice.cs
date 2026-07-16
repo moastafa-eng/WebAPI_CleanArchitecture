@@ -7,6 +7,7 @@ using WebAPI_CleanArchitecture.Domain.Entities.Invoices.Events;
 using WebAPI_CleanArchitecture.Domain.Entities.Invoices.ValueObjects;
 using WebAPI_CleanArchitecture.Domain.Entities.Products;
 using WebAPI_CleanArchitecture.Domain.Entities.Shared;
+using WebAPI_CleanArchitecture.Domain.Exceptions;
 
 namespace WebAPI_CleanArchitecture.Domain.Entities.Invoices
 {
@@ -42,7 +43,7 @@ namespace WebAPI_CleanArchitecture.Domain.Entities.Invoices
         {
             // check if PurchasedProducts is not null or empty
             if (dto.PurchasedProducts is null || dto.PurchasedProducts.Count == 0)
-                throw new InvalidOperationException("Empty Invoice can not be created!");
+                throw new BadRequestException(["Empty Invoice can not be created!"]);
 
 
             ICollection<InvoiceItem> purchaseProducts = [];

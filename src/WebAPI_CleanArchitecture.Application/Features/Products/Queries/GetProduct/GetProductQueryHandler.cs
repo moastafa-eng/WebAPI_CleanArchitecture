@@ -13,7 +13,7 @@ namespace WebAPI_CleanArchitecture.Application.Features.Products.Queries.GetProd
             var product = await _unitOfWork.GetRepository<Product>().GetByIdAsync(request.ProductId);
 
             if (product is null)
-                return Result<ProductResponse>.Fail(400, "Null.Error", $"The Product with Id {request.ProductId} is not found");
+                return Result<ProductResponse>.Failed(400, "Null.Error", $"The Product with Id {request.ProductId} is not found");
 
             var response = _mapper.Map<ProductResponse>(product);
 
