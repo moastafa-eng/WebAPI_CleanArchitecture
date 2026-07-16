@@ -1,5 +1,7 @@
 
+using Microsoft.AspNetCore.Mvc;
 using WebAPI_CleanArchitecture.APIs.Extensions;
+using WebAPI_CleanArchitecture.APIs.Filters;
 using WebAPI_CleanArchitecture.Application;
 using WebAPI_CleanArchitecture.Infrastructure;
 
@@ -16,9 +18,19 @@ namespace WebAPI_CleanArchitecture.APIs
             builder.Services.AddApplicationServices();
             builder.Services.LoadInfrastructureServices(builder.Configuration);
 
-                
 
-            builder.Services.AddControllers();
+            // Add ValidationFilter Class
+            builder.Services.AddControllers(opt =>
+            {
+                opt.Filters.Add(new ValidationFilterAttribute());
+            });
+
+            // Disable Automatic Validation
+            builder.Services.Configure<ApiBehaviorOptions>(opt =>
+            {
+                opt.SuppressModelStateInvalidFilter = true;
+            });
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

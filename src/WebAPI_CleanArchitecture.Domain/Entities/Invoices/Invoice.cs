@@ -41,9 +41,20 @@ namespace WebAPI_CleanArchitecture.Domain.Entities.Invoices
         // << Methods-Factory Design Pattern >>
         public static async Task<Invoice> Create(CreateInvoiceDto dto, IUnitOfWork unitOfWork)
         {
+            // check if customer exist
+            if (dto.CustomerId == Guid.Empty)
+                throw new BadRequestException(["Customer id is required"]);
+
+
             // check if PurchasedProducts is not null or empty
             if (dto.PurchasedProducts is null || dto.PurchasedProducts.Count == 0)
                 throw new BadRequestException(["Empty Invoice can not be created!"]);
+
+            if (dto.PurchasedProducts.Any(x => x.ProductId == Guid.Empty))
+                throw new BadRequestException(["Product id(s) is/are missed in your PurchasedProduct List"]);
+
+            if (dto.PurchasedProducts.Any(x => x.Quantity <= 0))
+                throw new BadRequestException(["Product Quantity must be set and be a positive number in your purchaseProduct List"]);
 
 
             ICollection<InvoiceItem> purchaseProducts = [];
